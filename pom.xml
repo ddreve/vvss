@@ -3,7 +3,13 @@
   <groupId>Prj_4_FamilyBudget</groupId>
   <artifactId>Prj_4_FamilyBudget</artifactId>
   <version>0.0.1-SNAPSHOT</version>
+  <properties>     
+  	<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>     
+  	<maven.compiler.source>1.6</maven.compiler.source>     
+  	<maven.compiler.target>1.6</maven.compiler.target>   
+  </properties>
   <build>
+  
     <sourceDirectory>src</sourceDirectory>
     <plugins>
       <plugin>
@@ -16,4 +22,11 @@
       </plugin>
     </plugins>
   </build>
+  <dependencies>
+  	<dependency>
+  		<groupId>junit</groupId>
+  		<artifactId>junit</artifactId>
+  		<version>4.12</version>
+  	</dependency>
+  </dependencies>
 </project>

@@ -26,6 +26,9 @@ public class MemberRepository {
 	private final static String filenameMember = "membersF.txt";
 	private final static String filenameBudget = "budgetF.txt";
 
+	public List<Member> getAllMembers(){
+		return members;
+	}
 	@SuppressWarnings("resource")
 	public MemberRepository() {
 		
