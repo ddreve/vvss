@@ -15,6 +15,17 @@ public class MemberRepository {
 	private final static String filenameMember = "membersF.txt";
 	private final static String filenameBudget = "budgetF.txt";
 
+	public int getMaxMembers() {
+		return maxMembers;
+	}
+
+	public int getMaxBudgets() {
+		return maxBudgets;
+	}
+
+	private int maxMembers=0;
+	private int maxBudgets=0;
+
 	public List<Member> getAllMembers(){
 		return members;
 	}
@@ -32,7 +43,8 @@ public class MemberRepository {
 		while ((currentLine = bufferedReader.readLine()) != null) {
 			String line[] = currentLine.split(";");
 			Member m = new Member(line[0], line[1]);
-			this.members.add(m);			
+			this.members.add(m);
+			maxMembers++;
 		}
 	 }catch(Exception ex){
          System.err.println(ex.getMessage());
@@ -50,15 +62,21 @@ public class MemberRepository {
 			int valueEntry = Integer.parseInt(line[1]);
 			int idEntryMember = Integer.parseInt(line[2]);
 			Entry e = new Entry(line[0],valueEntry,idEntryMember);
-			this.entries.add(e);			
+			this.entries.add(e);
+			maxBudgets++;
 		}
 	 }catch(Exception ex){
          System.err.println(ex.getMessage());
      }
 	}
 
-	 public void addMember(Member m){
-		 members.add(m);		 	 
+	 public void addMember(Member m) {
+		for(Member me:members)
+		{
+			if(me.getId().equals(m.getId())||me.getName().equals(m.getName()))
+				return;
+		}
+		members.add(m);
 	 }
 	 public void addEntry(Entry e){
 		 entries.add(e);		 	 

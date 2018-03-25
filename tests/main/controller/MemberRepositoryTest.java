@@ -29,4 +29,6 @@ public class MemberRepositoryTest {
 		assert(memberRepository.getAllMembers().get(3).getName().equals(member.getName()));
 	}
 
+
+
 }
