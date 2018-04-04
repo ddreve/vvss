@@ -79,7 +79,12 @@ public class MemberRepository {
 		members.add(m);
 	 }
 	 public void addEntry(Entry e){
-		 entries.add(e);		 	 
+		for(Entry en:entries) {
+			if (en.getIdMember()==e.getIdMember()){
+				return;
+			}
+		}
+		entries.add(e);
 	 }
 	 public List<Entry> getAllEntries(){
 		 
