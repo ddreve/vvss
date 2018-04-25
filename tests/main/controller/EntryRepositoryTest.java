@@ -1,5 +1,6 @@
 package main.controller;
 
+import main.exceptions.InvalidBudgetException;
 import main.model.Entry;
 import main.model.Member;
 import main.repository.MemberRepository;
@@ -15,7 +16,7 @@ public class EntryRepositoryTest {
     }
 
     @Test
-    public void test() {
+    public void test() throws InvalidBudgetException {
         MemberRepository memberRepository =new MemberRepository();
 
         Entry entry=new Entry("income",100,10);
@@ -23,7 +24,7 @@ public class EntryRepositoryTest {
         assert(memberRepository.getAllEntries().size()==10);
     }
     @Test
-    public void test2(){
+    public void test2() throws InvalidBudgetException {
         MemberRepository memberRepository =new MemberRepository();
         Entry entry=new Entry("income",100,10);
         memberRepository.addEntry(entry);

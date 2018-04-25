@@ -1,5 +1,7 @@
 package main.controller;
 
+import main.exceptions.InvalidBudgetException;
+import main.exceptions.InvalidNameException;
 import main.repository.MemberRepository;
 
 import main.model.Member;
@@ -17,12 +19,20 @@ public class MemberController {
     	this.mr =newMr;    	
     }
     
-    public void addMember(Member aMemebr) {
-        mr.addMember(aMemebr);    	
+    public void addMember(Member aMemebr){
+        try {
+            mr.addMember(aMemebr);
+        } catch (InvalidNameException e) {
+            e.printStackTrace();
+        }
     }
 
-    public void addEntry(Entry oneEntry) {
-        mr.addEntry(oneEntry);    	
+    public void addEntry(Entry oneEntry){
+        try {
+            mr.addEntry(oneEntry);
+        } catch (InvalidBudgetException e) {
+            e.printStackTrace();
+        }
     }
 
      public List<Entry> allEntries() {

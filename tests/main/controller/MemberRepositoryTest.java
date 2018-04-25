@@ -1,5 +1,6 @@
 package main.controller;
 
+import main.exceptions.InvalidNameException;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -13,7 +14,7 @@ public class MemberRepositoryTest {
 	}
 
 	@Test
-	public void test() {
+	public void test() throws InvalidNameException {
 		MemberRepository memberRepository =new MemberRepository();
 		
 		Member member=new Member("name1","id1");
@@ -22,7 +23,7 @@ public class MemberRepositoryTest {
 		
 	}
 	@Test
-	public void test2(){
+	public void test2() throws InvalidNameException {
 		MemberRepository memberRepository =new MemberRepository();
 		Member member=new Member("name1","id1");
 		memberRepository.addMember(member);

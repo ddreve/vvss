@@ -2,6 +2,8 @@ package main.repository;
 
 import java.io.BufferedReader;
 
+import main.exceptions.InvalidBudgetException;
+import main.exceptions.InvalidNameException;
 import main.model.*;
 
 import java.io.FileReader;
@@ -14,14 +16,6 @@ public class MemberRepository {
 
 	private final static String filenameMember = "membersF.txt";
 	private final static String filenameBudget = "budgetF.txt";
-
-	public int getMaxMembers() {
-		return maxMembers;
-	}
-
-	public int getMaxBudgets() {
-		return maxBudgets;
-	}
 
 	private int maxMembers=0;
 	private int maxBudgets=0;
@@ -43,7 +37,7 @@ public class MemberRepository {
 		while ((currentLine = bufferedReader.readLine()) != null) {
 			String line[] = currentLine.split(";");
 			Member m = new Member(line[0], line[1]);
-			this.members.add(m);
+			this.addMember(m);
 			maxMembers++;
 		}
 	 }catch(Exception ex){
@@ -62,7 +56,7 @@ public class MemberRepository {
 			int valueEntry = Integer.parseInt(line[1]);
 			int idEntryMember = Integer.parseInt(line[2]);
 			Entry e = new Entry(line[0],valueEntry,idEntryMember);
-			this.entries.add(e);
+			this.addEntry(e);
 			maxBudgets++;
 		}
 	 }catch(Exception ex){
@@ -70,18 +64,18 @@ public class MemberRepository {
      }
 	}
 
-	 public void addMember(Member m) {
+	 public void addMember(Member m) throws InvalidNameException {
 		for(Member me:members)
 		{
 			if(me.getId().equals(m.getId())||me.getName().equals(m.getName()))
-				return;
+				throw new InvalidNameException("Member already exists!");
 		}
 		members.add(m);
 	 }
-	 public void addEntry(Entry e){
+	 public void addEntry(Entry e)throws InvalidBudgetException{
 		for(Entry en:entries) {
 			if (en.getIdMember()==e.getIdMember()){
-				return;
+				throw new InvalidBudgetException("Entry already exists!");
 			}
 		}
 		entries.add(e);
