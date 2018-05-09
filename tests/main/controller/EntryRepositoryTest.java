@@ -27,7 +27,15 @@ public class EntryRepositoryTest {
     public void test2() throws InvalidBudgetException {
         MemberRepository memberRepository =new MemberRepository();
         Entry entry=new Entry("income",100,10);
+        Entry entry2=new Entry("income",100,10);
         memberRepository.addEntry(entry);
+        try {
+            memberRepository.addEntry(entry2);
+        }catch (InvalidBudgetException e){
+            e.printStackTrace();
+        }
+        assert (memberRepository.getAllEntries().size()==10);
+
         assert(memberRepository.getAllEntries().get(9).getIdMember()==10);
         assert("income".equals(memberRepository.getAllEntries().get(9).getType()));
     }
